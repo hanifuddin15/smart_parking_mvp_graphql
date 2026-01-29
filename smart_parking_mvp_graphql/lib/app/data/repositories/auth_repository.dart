@@ -8,10 +8,12 @@ class AuthRepository {
 
   Future<UserModel> login(String email, String password) async {
     final response = await _datasource.login(email, password);
-    final data = response.data['data']['login']['user'];
-    final token = response.data['data']['login']['token'];
+    final data = response.data['data']['login']['data'];
+    final accessToken = data['tokens']['accessToken'];
+    final refreshToken = data['tokens']['refreshToken'];
+    final user = data['user'];
     // Save token if needed
-    return UserModel.fromMap(data);
+    return UserModel.fromMap(user);
   }
 
   Future<UserModel> register(String name, String email, String password) async {
