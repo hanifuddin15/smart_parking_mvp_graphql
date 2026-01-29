@@ -1,5 +1,9 @@
+import 'package:flutter/foundation.dart';
+
 class Helpers {
   static void printLog(String message) {
-    print("LOG: $message");
+    if (kDebugMode) {
+      print("LOG: $message");
+    }
   }
 }
